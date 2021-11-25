@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+	<div id="box"></div>
+    <script>
+        //补零函数
+        function fullZero(timer) {
+            return timer = timer < 10 ? "0" + timer : timer;
+        }
+        // 获取倒计时时间(3分钟)
+        let couDown = new Date().getTime() + 3*60*1000+1000;//(多出一秒是为了初始值为00)
+        // 时间函数
+        function timer() {
+            let curTime = new Date();
+            // 求差值
+            let chaTime = couDown - curTime;//时间戳
+            // 判断是否到0,不为0则计时
+            if (chaTime >= 0) {
+                // 剩余分
+                let minute = Math.floor(chaTime / 1000 / 60 % 60);
+                minute = fullZero(minute);
+                // 剩余秒
+                let second = Math.floor(chaTime / 1000 % 60);
+                second = fullZero(second);
+                // 时间字符串
+                let str = `${minute}分&nbsp;${second}秒`;
+                document.getElementById("box").innerHTML = str;
+            }
+        }
+        //第一次调用：函数先执行一次
+        timer();
+        //第二次调用：显示多走掉的那一秒
+        timer();
+        // 让时间动起来
+        setInterval(timer, 1000);
+    </script>
+
+</body>
+</html>

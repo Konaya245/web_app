@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+  --maincolor:#007AF3;
+
+/* 当你更改这里的颜色，所有用到这个颜色的地方都会更改 */
+/* “--”是必不可少的，属性声明标志，之后可跟名字 */
+}
+
+body {
+  background-color:var(--maincolor);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+    /* place-content: space-between; */
+    color: white;
+}
+
+.page-up>.windows>.one>ul>li{
+  /* 深色 */
+
+    background:#006BD6;
+    text-align: center;
+    padding: 2em 1em;
+    width: 15em;
+    margin: 4em 0em 0em 5em;
+    border-radius: 1em;
+  }
+  .page-up>.windows>.one>ul>li>div{
+background:#0259af;
+font-size: 2em;
+padding: 0.3em;
+  }
+.page-up>.windows>.one>ul>li>img{
+    width:5em ;
+    height: 5em;
+    border: 5px soild #006BD6;
+    border-radius: 50%;
+    margin-top: -4.5em;
+  }
+.page-down-left{
+  text-align: center;
+  width: 50%;
+  float:left;
+}
+
+.page-down-right{
+  text-align: center;
+  width:50%;
+  float:left;
+}
+
+#getnumber{
+  /* 深色 */
+  font-size: 1em;
+    background:#006BD6;
+    color: white;
+    text-align: center;
+    padding: 1em 0.5em;
+    width: 50%;
+    margin-top: 3em;
+    /* margin: 3em 25% 1em 20%; */
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.page-down-right>h1{
+  display:inline-block;
+  font-size: 1em;
+  background:#006BD6;
+  color: white;
+  text-align: center;
+  padding: 1em 0.5em;
+  width: 50%;
+  margin-top: 3em;
+  /* margin: 3em 25% 1em 20%; */
+  border-radius: 1em;
+
+}
+#current-number{
+  font-size: 3em;
+  background:white;
+  color: black;
+  text-align: center;
+  padding: 0.5em 0.1em;
+  width: 50%;
+  /* margin-top: 1em; */
+  margin: 0.65em 25% 1em 25%;
+  border-radius: 1em;
+}
+.show-time{
+  text-align: center;
+  background:white;
+  width: 50%;
+  padding: 1em 1em;
+  margin: 0.65em 25% 1em 25%;
+  border-radius: 1em;
+}
+ #shownumber{
+  font-size: 3em;
+  background:white;
+  color: black;
+  text-align: center;
+  padding: 0.5em 0.1em;
+  width: 50%;
+  /* margin-top: 1em; */
+  margin: 1em 25% 1em 25%;
+  border-radius: 1em;
+} 
