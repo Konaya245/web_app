@@ -18,7 +18,7 @@ function check($generated)
 
 function generate()
 {
-    // echo "fuck \n";
+    
     global $random_number;
     global $current_serving;
     if (check($random_number)) {
