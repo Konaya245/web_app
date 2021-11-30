@@ -5,3 +5,7 @@
 >- 1820833
 >- 1920218
 >- 1711575
+
+## How to run?
+ 1. `git clone https://wwww.github.com/blackdracula18/web_app`
+ 2. php index.php
