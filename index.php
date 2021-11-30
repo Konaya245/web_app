@@ -74,6 +74,15 @@ function checkSlot($value) // basically to ensure we either add or not
 
 function get_counter($number)
 {
+    global $counter_array;
+    foreach ($counter_array as $value)
+    {
+        if ($value -> get_current_serving() == $number)
+        {
+            echo "You're assinged to Counter: ".(array_search($value, $counter_array)+1)."\n";
+        }
+        else return "All counters are full, You're assigned to waiting Que\n";
+    }
     
 }
 $counter1->set_agent("1821881");
@@ -88,14 +97,18 @@ $counter5->set_agent("1711575");
 do {
     echo "Welcome to Counter Line Up System\n";
     // gettimeofday();
-    echo "1. Get Number\n2. Show Average waiting time\n3. Show waiting \n4. Show available Counters\n5. Show Counter detailsQ\n6. Enter q or Q to exit\n\nEnter Choice: ";
+    echo "1. Get Number\n2. Show Average waiting time\n3. Show waiting \n4. Show available Counters\n5. Show Counter details\n6. Enter q or Q to exit\n\nEnter Choice: ";
 
     $option = fgets(STDIN);
 
     switch ($option) {
         case 1: {
-            echo "Your Number is: " . generate()."\n";
+            $number = generate();
+            echo "Your Number is: " . $number."\n";
             assignToCounter();
+            get_counter($number);
+            echo "\n";
+            break;
         }
     }
 } while ($option != 999);
