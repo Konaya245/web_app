@@ -72,19 +72,46 @@ function checkSlot($value) // basically to ensure we either add or not
     return false;
 }
 
-function get_counter($number)
+function get_counter(&$number, &$counter_array)
 {
-    global $counter_array;
-    foreach ($counter_array as $value)
-    {
-        if ($value -> get_current_serving() == $number)
-        {
-            echo "You're assinged to Counter: ".(array_search($value, $counter_array)+1)."\n";
+    foreach ($counter_array as $value) {
+        if ($value->get_current_serving() == $number) {
+            echo "You're assinged to Counter: " . (array_search($value, $counter_array) + 1) . "\n";
+            return true;
         }
-        else return "All counters are full, You're assigned to waiting Que\n";
+        // else echo "All counters are full, You're assigned to waiting Que\n";
     }
-    
+    echo "All counters are full, You're assigned to waiting Que\n";
+    return false;
 }
+
+function get_avg_time(&$counter_array)
+{
+    global $current_serving;
+    global $waiting;
+    static $temp = 0;
+    foreach ($counter_array as $value) {
+        $temp += ($value->get_timeCreated() / 3000); //miliseconds
+    }
+    // this array has -1 as its genesis 
+    if (count($current_serving) <= 5 && count($waiting) == 0) {
+        echo "The waiting time is: 0. Theres available Counter For you\n";
+        return false;
+    } else {
+        foreach ($waiting as $value) // we are basically assuming the wating Q will use the max time which is 5mins
+        {
+            $temp += 30000; //milisec
+        }
+    }
+
+    $temp /= count($counter_array);
+    $temp /= 60; // seconds
+    $temp /= 60; // minutes
+    $temp /= 30; // 30 sec * 100 = 300sec == 5mins
+    return floor($temp); // return how many mins you should wait
+
+}
+
 $counter1->set_agent("1821881");
 $counter2->set_agent("1829957");
 $counter3->set_agent("1820833");
@@ -100,16 +127,23 @@ do {
     echo "1. Get Number\n2. Show Average waiting time\n3. Show waiting \n4. Show available Counters\n5. Show Counter details\n6. Enter q or Q to exit\n\nEnter Choice: ";
 
     $option = fgets(STDIN);
+    global $counter_array;
 
     switch ($option) {
         case 1: {
-            $number = generate();
-            echo "Your Number is: " . $number."\n";
-            assignToCounter();
-            get_counter($number);
-            echo "\n";
-            break;
-        }
+                $number = generate();
+                echo "Your Number is: " . $number . "\n";
+                assignToCounter();
+                get_counter($number, $counter_array);
+                echo "\n";
+                break;
+            }
+        case 2: {
+                if (get_avg_time($counter_array)) {
+                    echo "Average waiting time is: ". get_avg_time($counter_array) . " minutes\n";
+                }
+                break;
+            }
     }
 } while ($option != 999);
 

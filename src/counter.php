@@ -32,11 +32,16 @@ class Counter
 
     function get_timer($timeCreated, $index, &$current_serving)
     {
-        if ($timeCreated - $this->timeCreated >= 1 )
+        if ($timeCreated - $this->timeCreated >= 300 ) //300sec == 5mins
         {
             $this->set_current_serving(null, $current_serving, $index);
             echo " ".$timeCreated - $this->timeCreated;
         }
+    }
+
+    function get_timeCreated()
+    {
+        return $this -> timeCreated;
     }
 
     function getJson()
