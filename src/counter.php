@@ -8,7 +8,7 @@ class Counter
 
     function __construct()
     {
-        $this -> timeCreated = time();
+        $this->timeCreated = time();
     }
 
     function set_agent($agent)
@@ -30,18 +30,20 @@ class Counter
         return $this->current_serving;
     }
 
+    // this function set the current serving to null if time exceed
+    // we need cookie to implement this with ajax
     function get_timer($timeCreated, $index, &$current_serving)
     {
-        if ($timeCreated - $this->timeCreated >= 300 ) //300sec == 5mins
+        if ($timeCreated - $this->timeCreated >= 300) //300sec == 5mins
         {
             $this->set_current_serving(null, $current_serving, $index);
-            echo " ".$timeCreated - $this->timeCreated;
+            echo " " . $timeCreated - $this->timeCreated;
         }
     }
 
     function get_timeCreated()
     {
-        return $this -> timeCreated;
+        return $this->timeCreated;
     }
 
     function getJson()
